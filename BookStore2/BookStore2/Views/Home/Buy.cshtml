@@ -1,0 +1,20 @@
+﻿@model BookStore2.Models.Purchase
+@{
+    ViewBag.Title = "Buy";
+}
+
+<h2>Купить книгу</h2>
+<div >
+    @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.BookId, @ViewBag.BookId as string)
+        @Html.LabelFor(m => m.Person, "Введите свое имя")
+        <br />
+        @Html.TextBoxFor(m => m.Person, "", new { placeholder = "Введите имя", required = "required" })
+        <br /><br />
+        @Html.LabelFor(m => m.Address, "Введите адрес")
+        <br />
+        @Html.TextBoxFor(m => m.Address, "", new { placeholder = "Введите адрес", required = "required" })
+        <p><input type="submit" value="Отправить" /></p>
+    }
+</div>

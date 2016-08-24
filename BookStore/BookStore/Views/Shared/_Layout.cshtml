@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta  charset="utf-8"/>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <nav>
+        <ul class="menu">
+            <li>@Html.ActionLink("Главная", "Index", "Home")</li>
+            &nbsp;&nbsp;&nbsp;
+            <li>@Html.ActionLink("Мой контроллер", "Execute","My")</li>
+            &nbsp;&nbsp;&nbsp;
+            <li>@Html.ActionLink("Синхронный запрос", "Index", "Async")</li>
+            &nbsp;&nbsp;&nbsp;
+            <li>@Html.ActionLink("Асинхронный запрос", "BookList", "Async")</li>
+        </ul>
+    </nav>
+    <!-- при вызове ресурса в эту часть мастер-страницы и будут подставляться содержимое остальных представлений.-->
+    @RenderBody()
+    @*@<footer class="foo">@RenderSection("Footer", false)</footer>*@
+    <br />
+    @try
+    { 
+        <p>@Html.Partial("Partial")</p>
+        <p>@{Html.RenderPartial("Partial");}</p> @*Работает быстрее чем Partial*@
+    }
+    catch { }
+
+    <br />
+    <footer class="foo">
+        @if (IsSectionDefined("Footer"))
+        {
+            @RenderSection("Footer")
+        }
+        else
+        {
+            <span>Содержание элемента footer по умолчанию.</span>   
+        }
+    </footer>
+</body>
+</html>

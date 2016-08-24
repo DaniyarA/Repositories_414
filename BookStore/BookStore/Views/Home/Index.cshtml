@@ -1,0 +1,59 @@
+﻿@using BookStore.Models
+@using BookStore.Helpers
+
+@*@helper BookList(IEnumerable<BookStore.Models.Book> books)
+{
+    <ul>
+        @foreach (BookStore.Models.Book b in books)
+        {
+            <li>@b.Name</li>
+        }
+    </ul>
+}*@
+<div>
+    <h3>Распродажа книг</h3>
+    <table>
+        <tr class="header">
+            <td><p>Название книги</p></td>
+            <td><p>Автор</p></td>
+            <td><p>Цена</p></td>
+        </tr>
+        @foreach (var b in ViewBag.Books)
+        {
+            <tr>
+                <td><p>@b.Name</p></td>
+                <td><p>@b.Author</p></td>
+                <td><p>@b.Price</p></td>
+                <td><p><a href="/Home/Buy/@b.Id">Купить</a></p></td>
+            </tr>
+        }
+    </table>
+</div>
+<br />
+<h2>Список книг</h2>
+@*@BookList(Model)*@
+<br />
+
+@{
+    string[] cities = new string[] { "Лондон", "Париж", "Москва" };
+}
+
+@{
+    string[] countries = new string[] { "Великобритания", "Франция", "Россия" };
+}
+
+<h3>Города</h3>
+@Html.CreateList(cities)
+<br />
+<h3>Страны</h3>
+@ListHelper.CreateList(Html, countries)
+
+<br /><!--множественный выбор в списке-->
+@using (Html.BeginForm()) 
+{ 
+    @Html.ListBox("countr", new MultiSelectList(new string[] { "Россия", "США", "Китай", "Индия" }), new { @style = " width: 150px; color:red; font-size:20px;" })
+    <p><input type="submit" value="отправить" /></p>
+}
+@section Footer{
+    <center>Все права защищены! 2016</center>
+}

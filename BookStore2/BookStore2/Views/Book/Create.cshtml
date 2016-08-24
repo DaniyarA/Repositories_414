@@ -1,0 +1,55 @@
+﻿@model BookStore2.Models.Book
+
+<fieldset>
+    <legend>Book</legend>
+    @using (Html.BeginForm())
+    {
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.ValidationMessageFor(model => model.Name)<br />
+            @Html.EditorFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Author)
+        </div>
+        <div class="editor-field">
+            @Html.ValidationMessageFor(model => model.Author)<br />
+            @Html.EditorFor(model => model.Author)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Price)
+        </div>
+        <div class="editor-field">
+            @Html.ValidationMessageFor(model => model.Price)<br />
+            @Html.EditorFor(model => model.Price)
+        </div>
+        <br />
+        <input type="submit" value="Добавить" />
+    }
+</fieldset>
+
+    <style  type="text/css">
+    .field-validation-error {
+        color: #f00;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+    .input-validation-error {
+        border: 1px solid #f00;
+        background-color: #f00;
+    }
+
+    .validation-summary-errors {
+        font-weight: bold;
+        color: #f00;
+    }
+
+    .validation-summary-valid {
+        display: none;
+    }
+</style>

@@ -1,0 +1,60 @@
+﻿@model BookStore.Models.Purchase
+
+<div>
+    <h3>Форма оформления покупки</h3>
+
+    <!--<form method="post" action="">
+        <input type="hidden" value="@ViewBag.BookId" name="BookId" />
+        <table>
+            <tr>
+                <td><p>Введите свое имя</p></td>
+                <td><input type="text" name="Person" /></td>
+            </tr>
+            <tr>
+                <td><p>Введите адрес: </p></td>
+                <td><input type="text" name="Address" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Отправить" /></td>
+            </tr>
+        </table>
+    </form>
+        -->
+    @*
+        @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {
+        <!--<input type="hidden" value="@ViewBag.BookId" name="BookId" />-->
+        @Html.Hidden("BookId", @ViewBag.BookId as string);
+        <label for="Person">Введите свое имя</label>
+               <!--<td><input type="text" name="Person" /></td>-->
+        @Html.TextBox("Person", "", new { placeholder = "Введите имя", required = "required" })
+        <br /><br />
+        <label for="Address">Введите адрес:&nbsp;&nbsp;</label>
+                <!--<td><input type="text" name="Address" /></td>-->
+        @Html.TextBox("Address", "", new { placeholder = "Введите адрес", required = "required" })
+        <p><input type="submit" value="Отправить" /></p>
+        
+        <!--CheckBox в ASP NET MVC-->
+        @Html.CheckBox("Enable", false)
+        <br /><br />
+        <!--DropDownList-->
+        @Html.DropDownList("countires", new SelectList(new string[] { "Russia", "USA", "Canada", "France" }), "Countries");
+        <br />
+    }*@
+
+    @using (Html.BeginForm("Buy", "Home", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.BookId, @ViewBag.BookId as string)
+        @Html.LabelFor(m => m.Person, "Введите свое имя")
+        <br />
+        @Html.TextBoxFor(m => m.Person,"", new { placeholder = "Введите имя", required = "required" })
+        <br /><br />
+        @Html.LabelFor(m => m.Address, "Введите адрес")
+        <br />
+        @Html.TextBoxFor(m => m.Address,"", new { placeholder = "Введите адрес", required = "required" })
+        <p><input type="submit" value="Отправить" /></p>
+    }
+</div>
+@section Footer{
+    <center>Все права защищены! 2016</center>
+}
